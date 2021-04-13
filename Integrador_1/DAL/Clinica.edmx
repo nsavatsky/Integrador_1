@@ -1,0 +1,1323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Integrador_1.DAL.Clinica.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BARRIOS">
+          <Key>
+            <PropertyRef Name="id_barrio" />
+          </Key>
+          <Property Name="id_barrio" Type="int" Nullable="false" />
+          <Property Name="nom_barrio" Type="varchar" MaxLength="100" />
+          <Property Name="id_localidad" Type="int" />
+        </EntityType>
+        <EntityType Name="DIAGNOSTICOS">
+          <Key>
+            <PropertyRef Name="tipo_dx" />
+          </Key>
+          <Property Name="tipo_dx" Type="int" Nullable="false" />
+          <Property Name="nom_diagnostico" Type="varchar" MaxLength="100" />
+          <Property Name="id_especialidad" Type="int" />
+          <Property Name="alta_complejidad" Type="bit" />
+        </EntityType>
+        <EntityType Name="EMPLEADOS">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="nombre_empleado" Type="varchar" MaxLength="100" />
+          <Property Name="apellido_empleado" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_doc" Type="int" />
+          <Property Name="nro_doc" Type="bigint" />
+          <Property Name="calle" Type="varchar" MaxLength="100" />
+          <Property Name="nro_dom" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="bigint" />
+          <Property Name="id_barrio" Type="int" />
+        </EntityType>
+        <EntityType Name="ESPECIALIDADES">
+          <Key>
+            <PropertyRef Name="id_especialidad" />
+          </Key>
+          <Property Name="id_especialidad" Type="int" Nullable="false" />
+          <Property Name="nombre_especialidad" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GENEROS">
+          <Key>
+            <PropertyRef Name="id_genero" />
+          </Key>
+          <Property Name="id_genero" Type="int" Nullable="false" />
+          <Property Name="desc_genero" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="HISTORIA_PROCEDIMIENTOS">
+          <Key>
+            <PropertyRef Name="id_historia_clinica" />
+            <PropertyRef Name="id_procedimiento" />
+          </Key>
+          <Property Name="id_historia_clinica" Type="int" Nullable="false" />
+          <Property Name="id_procedimiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HISTORIAS_CLINICAS">
+          <Key>
+            <PropertyRef Name="id_historia_clinica" />
+          </Key>
+          <Property Name="id_historia_clinica" Type="int" Nullable="false" />
+          <Property Name="id_paciente" Type="int" />
+          <Property Name="fecha_ingreso" Type="date" />
+        </EntityType>
+        <EntityType Name="LOCALIDADES">
+          <Key>
+            <PropertyRef Name="id_localidad" />
+          </Key>
+          <Property Name="id_localidad" Type="int" Nullable="false" />
+          <Property Name="nom_localidad" Type="varchar" MaxLength="100" />
+          <Property Name="id_provincia" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="MEDICOS">
+          <Key>
+            <PropertyRef Name="id_medico" />
+          </Key>
+          <Property Name="id_medico" Type="int" Nullable="false" />
+          <Property Name="id_especialidad" Type="int" />
+          <Property Name="matricula" Type="bigint" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="OBRAS_SOCIALES">
+          <Key>
+            <PropertyRef Name="id_obra_social" />
+          </Key>
+          <Property Name="id_obra_social" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PACIENTES">
+          <Key>
+            <PropertyRef Name="id_paciente" />
+          </Key>
+          <Property Name="id_paciente" Type="int" Nullable="false" />
+          <Property Name="nom_paciente" Type="varchar" MaxLength="100" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_doc" Type="int" />
+          <Property Name="nro_doc" Type="bigint" />
+          <Property Name="calle" Type="varchar" MaxLength="100" />
+          <Property Name="nro_dom" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="bigint" />
+          <Property Name="id_barrio" Type="int" />
+          <Property Name="id_obra_social" Type="int" />
+          <Property Name="id_genero" Type="int" />
+        </EntityType>
+        <EntityType Name="PLANES">
+          <Key>
+            <PropertyRef Name="id_plan" />
+          </Key>
+          <Property Name="id_plan" Type="int" Nullable="false" />
+          <Property Name="nom_plan" Type="varchar" MaxLength="100" />
+          <Property Name="req_coseg" Type="bit" />
+        </EntityType>
+        <EntityType Name="PLANES_OBRA_SOCIAL">
+          <Key>
+            <PropertyRef Name="id_plan" />
+            <PropertyRef Name="id_obra_social" />
+          </Key>
+          <Property Name="id_plan" Type="int" Nullable="false" />
+          <Property Name="id_obra_social" Type="int" Nullable="false" />
+          <Property Name="nom_plan" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PROCEDIMIENTOS">
+          <Key>
+            <PropertyRef Name="id_procedimiento" />
+          </Key>
+          <Property Name="id_procedimiento" Type="int" Nullable="false" />
+          <Property Name="tipo_dx" Type="int" />
+          <Property Name="id_medico" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="hora" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="PROVINCIAS">
+          <Key>
+            <PropertyRef Name="id_provincia" />
+          </Key>
+          <Property Name="id_provincia" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="nom_provincia" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ROLES_USUARIOS">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+          </Key>
+          <Property Name="cod_rol" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="desc_rol" Type="varchar" MaxLength="100" />
+          <Property Name="es_sysadmin" Type="bit" />
+          <Property Name="es_medico" Type="bit" />
+          <Property Name="asigna_turnos" Type="bit" />
+          <Property Name="es_administrativo" Type="bit" />
+        </EntityType>
+        <EntityType Name="ROLES_USUARIOS_TIPO_USUARIOS">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+            <PropertyRef Name="id_tipo_usuario" />
+          </Key>
+          <Property Name="cod_rol" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_tipo_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPOS_DOC">
+          <Key>
+            <PropertyRef Name="id_tipo_doc" />
+          </Key>
+          <Property Name="id_tipo_doc" Type="int" Nullable="false" />
+          <Property Name="desc_tipo_doc" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TIPOS_USUARIO">
+          <Key>
+            <PropertyRef Name="id_tipo_usuario" />
+          </Key>
+          <Property Name="id_tipo_usuario" Type="int" Nullable="false" />
+          <Property Name="desc_tipo_usuario" Type="varchar" MaxLength="100" />
+          <Property Name="es_admin" Type="bit" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="100" />
+          <Property Name="id_empleado" Type="int" />
+          <Property Name="id_tipo_usuario" Type="int" />
+          <Property Name="contrasena" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_DX_ESPECIALIDAD">
+          <End Role="ESPECIALIDADES" Type="Self.ESPECIALIDADES" Multiplicity="0..1" />
+          <End Role="DIAGNOSTICOS" Type="Self.DIAGNOSTICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESPECIALIDADES">
+              <PropertyRef Name="id_especialidad" />
+            </Principal>
+            <Dependent Role="DIAGNOSTICOS">
+              <PropertyRef Name="id_especialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADOS">
+          <End Role="BARRIOS" Type="Self.BARRIOS" Multiplicity="0..1" />
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BARRIOS">
+              <PropertyRef Name="id_barrio" />
+            </Principal>
+            <Dependent Role="EMPLEADOS">
+              <PropertyRef Name="id_barrio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORIA_PROCEDIMIENTOS_HISTORIA">
+          <End Role="HISTORIAS_CLINICAS" Type="Self.HISTORIAS_CLINICAS" Multiplicity="1" />
+          <End Role="HISTORIA_PROCEDIMIENTOS" Type="Self.HISTORIA_PROCEDIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HISTORIAS_CLINICAS">
+              <PropertyRef Name="id_historia_clinica" />
+            </Principal>
+            <Dependent Role="HISTORIA_PROCEDIMIENTOS">
+              <PropertyRef Name="id_historia_clinica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORIA_PROCEDIMIENTOS_PROCEDIMIENTOS">
+          <End Role="PROCEDIMIENTOS" Type="Self.PROCEDIMIENTOS" Multiplicity="1" />
+          <End Role="HISTORIA_PROCEDIMIENTOS" Type="Self.HISTORIA_PROCEDIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROCEDIMIENTOS">
+              <PropertyRef Name="id_procedimiento" />
+            </Principal>
+            <Dependent Role="HISTORIA_PROCEDIMIENTOS">
+              <PropertyRef Name="id_procedimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORIAS_CLINICAS_PACIENTES">
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="0..1" />
+          <End Role="HISTORIAS_CLINICAS" Type="Self.HISTORIAS_CLINICAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTES">
+              <PropertyRef Name="id_paciente" />
+            </Principal>
+            <Dependent Role="HISTORIAS_CLINICAS">
+              <PropertyRef Name="id_paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCALIDADES">
+          <End Role="LOCALIDADES" Type="Self.LOCALIDADES" Multiplicity="0..1" />
+          <End Role="BARRIOS" Type="Self.BARRIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCALIDADES">
+              <PropertyRef Name="id_localidad" />
+            </Principal>
+            <Dependent Role="BARRIOS">
+              <PropertyRef Name="id_localidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCALIDADES_PROVINCIAS">
+          <End Role="PROVINCIAS" Type="Self.PROVINCIAS" Multiplicity="0..1" />
+          <End Role="LOCALIDADES" Type="Self.LOCALIDADES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIAS">
+              <PropertyRef Name="id_provincia" />
+            </Principal>
+            <Dependent Role="LOCALIDADES">
+              <PropertyRef Name="id_provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_ESPECIALIDADES">
+          <End Role="ESPECIALIDADES" Type="Self.ESPECIALIDADES" Multiplicity="0..1" />
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESPECIALIDADES">
+              <PropertyRef Name="id_especialidad" />
+            </Principal>
+            <Dependent Role="MEDICOS">
+              <PropertyRef Name="id_especialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="MEDICOS">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_BARRIO">
+          <End Role="BARRIOS" Type="Self.BARRIOS" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BARRIOS">
+              <PropertyRef Name="id_barrio" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="id_barrio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_GENERO">
+          <End Role="GENEROS" Type="Self.GENEROS" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENEROS">
+              <PropertyRef Name="id_genero" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="id_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_OBRA_SOCIAL">
+          <End Role="OBRAS_SOCIALES" Type="Self.OBRAS_SOCIALES" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OBRAS_SOCIALES">
+              <PropertyRef Name="id_obra_social" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="id_obra_social" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_TIPO_DOC">
+          <End Role="TIPOS_DOC" Type="Self.TIPOS_DOC" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_DOC">
+              <PropertyRef Name="id_tipo_doc" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="tipo_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL">
+          <End Role="OBRAS_SOCIALES" Type="Self.OBRAS_SOCIALES" Multiplicity="1" />
+          <End Role="PLANES_OBRA_SOCIAL" Type="Self.PLANES_OBRA_SOCIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OBRAS_SOCIALES">
+              <PropertyRef Name="id_obra_social" />
+            </Principal>
+            <Dependent Role="PLANES_OBRA_SOCIAL">
+              <PropertyRef Name="id_obra_social" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLANES_OBRA_SOCIAL_PLANES">
+          <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+          <End Role="PLANES_OBRA_SOCIAL" Type="Self.PLANES_OBRA_SOCIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLANES">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="PLANES_OBRA_SOCIAL">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROCEDIMIENTOS_MEDICOS">
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="0..1" />
+          <End Role="PROCEDIMIENTOS" Type="Self.PROCEDIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="id_medico" />
+            </Principal>
+            <Dependent Role="PROCEDIMIENTOS">
+              <PropertyRef Name="id_medico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROCEDIMIENTOS_TIPOS_DX">
+          <End Role="DIAGNOSTICOS" Type="Self.DIAGNOSTICOS" Multiplicity="0..1" />
+          <End Role="PROCEDIMIENTOS" Type="Self.PROCEDIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIAGNOSTICOS">
+              <PropertyRef Name="tipo_dx" />
+            </Principal>
+            <Dependent Role="PROCEDIMIENTOS">
+              <PropertyRef Name="tipo_dx" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLES_USUARIOS_TIPO_USUARIOS_ROLES">
+          <End Role="ROLES_USUARIOS" Type="Self.ROLES_USUARIOS" Multiplicity="1" />
+          <End Role="ROLES_USUARIOS_TIPO_USUARIOS" Type="Self.ROLES_USUARIOS_TIPO_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES_USUARIOS">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="ROLES_USUARIOS_TIPO_USUARIOS">
+              <PropertyRef Name="cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLES_USUARIOS_TIPO_USUARIOS_TIPOS">
+          <End Role="TIPOS_USUARIO" Type="Self.TIPOS_USUARIO" Multiplicity="1" />
+          <End Role="ROLES_USUARIOS_TIPO_USUARIOS" Type="Self.ROLES_USUARIOS_TIPO_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_USUARIO">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Principal>
+            <Dependent Role="ROLES_USUARIOS_TIPO_USUARIOS">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_DOC">
+          <End Role="TIPOS_DOC" Type="Self.TIPOS_DOC" Multiplicity="0..1" />
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_DOC">
+              <PropertyRef Name="id_tipo_doc" />
+            </Principal>
+            <Dependent Role="EMPLEADOS">
+              <PropertyRef Name="tipo_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_EMPLEADO">
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_TIPO_USUARIO">
+          <End Role="TIPOS_USUARIO" Type="Self.TIPOS_USUARIO" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_USUARIO">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Integrador_1DALClinicaStoreContainer">
+          <EntitySet Name="BARRIOS" EntityType="Self.BARRIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIAGNOSTICOS" EntityType="Self.DIAGNOSTICOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADOS" EntityType="Self.EMPLEADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESPECIALIDADES" EntityType="Self.ESPECIALIDADES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GENEROS" EntityType="Self.GENEROS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORIA_PROCEDIMIENTOS" EntityType="Self.HISTORIA_PROCEDIMIENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORIAS_CLINICAS" EntityType="Self.HISTORIAS_CLINICAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOCALIDADES" EntityType="Self.LOCALIDADES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICOS" EntityType="Self.MEDICOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OBRAS_SOCIALES" EntityType="Self.OBRAS_SOCIALES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTES" EntityType="Self.PACIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLANES" EntityType="Self.PLANES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLANES_OBRA_SOCIAL" EntityType="Self.PLANES_OBRA_SOCIAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROCEDIMIENTOS" EntityType="Self.PROCEDIMIENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES_USUARIOS" EntityType="Self.ROLES_USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES_USUARIOS_TIPO_USUARIOS" EntityType="Self.ROLES_USUARIOS_TIPO_USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOS_DOC" EntityType="Self.TIPOS_DOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOS_USUARIO" EntityType="Self.TIPOS_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DX_ESPECIALIDAD" Association="Self.FK_DX_ESPECIALIDAD">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="DIAGNOSTICOS" EntitySet="DIAGNOSTICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADOS" Association="Self.FK_EMPLEADOS">
+            <End Role="BARRIOS" EntitySet="BARRIOS" />
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORIA_PROCEDIMIENTOS_HISTORIA" Association="Self.FK_HISTORIA_PROCEDIMIENTOS_HISTORIA">
+            <End Role="HISTORIAS_CLINICAS" EntitySet="HISTORIAS_CLINICAS" />
+            <End Role="HISTORIA_PROCEDIMIENTOS" EntitySet="HISTORIA_PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORIA_PROCEDIMIENTOS_PROCEDIMIENTOS" Association="Self.FK_HISTORIA_PROCEDIMIENTOS_PROCEDIMIENTOS">
+            <End Role="PROCEDIMIENTOS" EntitySet="PROCEDIMIENTOS" />
+            <End Role="HISTORIA_PROCEDIMIENTOS" EntitySet="HISTORIA_PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORIAS_CLINICAS_PACIENTES" Association="Self.FK_HISTORIAS_CLINICAS_PACIENTES">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="HISTORIAS_CLINICAS" EntitySet="HISTORIAS_CLINICAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIDADES" Association="Self.FK_LOCALIDADES">
+            <End Role="LOCALIDADES" EntitySet="LOCALIDADES" />
+            <End Role="BARRIOS" EntitySet="BARRIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIDADES_PROVINCIAS" Association="Self.FK_LOCALIDADES_PROVINCIAS">
+            <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="LOCALIDADES" EntitySet="LOCALIDADES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_ESPECIALIDADES" Association="Self.FK_MEDICOS_ESPECIALIDADES">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_USUARIOS" Association="Self.FK_MEDICOS_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_BARRIO" Association="Self.FK_PACIENTES_BARRIO">
+            <End Role="BARRIOS" EntitySet="BARRIOS" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_GENERO" Association="Self.FK_PACIENTES_GENERO">
+            <End Role="GENEROS" EntitySet="GENEROS" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_OBRA_SOCIAL" Association="Self.FK_PACIENTES_OBRA_SOCIAL">
+            <End Role="OBRAS_SOCIALES" EntitySet="OBRAS_SOCIALES" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_TIPO_DOC" Association="Self.FK_PACIENTES_TIPO_DOC">
+            <End Role="TIPOS_DOC" EntitySet="TIPOS_DOC" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL" Association="Self.FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL">
+            <End Role="OBRAS_SOCIALES" EntitySet="OBRAS_SOCIALES" />
+            <End Role="PLANES_OBRA_SOCIAL" EntitySet="PLANES_OBRA_SOCIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLANES_OBRA_SOCIAL_PLANES" Association="Self.FK_PLANES_OBRA_SOCIAL_PLANES">
+            <End Role="PLANES" EntitySet="PLANES" />
+            <End Role="PLANES_OBRA_SOCIAL" EntitySet="PLANES_OBRA_SOCIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROCEDIMIENTOS_MEDICOS" Association="Self.FK_PROCEDIMIENTOS_MEDICOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="PROCEDIMIENTOS" EntitySet="PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROCEDIMIENTOS_TIPOS_DX" Association="Self.FK_PROCEDIMIENTOS_TIPOS_DX">
+            <End Role="DIAGNOSTICOS" EntitySet="DIAGNOSTICOS" />
+            <End Role="PROCEDIMIENTOS" EntitySet="PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLES_USUARIOS_TIPO_USUARIOS_ROLES" Association="Self.FK_ROLES_USUARIOS_TIPO_USUARIOS_ROLES">
+            <End Role="ROLES_USUARIOS" EntitySet="ROLES_USUARIOS" />
+            <End Role="ROLES_USUARIOS_TIPO_USUARIOS" EntitySet="ROLES_USUARIOS_TIPO_USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLES_USUARIOS_TIPO_USUARIOS_TIPOS" Association="Self.FK_ROLES_USUARIOS_TIPO_USUARIOS_TIPOS">
+            <End Role="TIPOS_USUARIO" EntitySet="TIPOS_USUARIO" />
+            <End Role="ROLES_USUARIOS_TIPO_USUARIOS" EntitySet="ROLES_USUARIOS_TIPO_USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_DOC" Association="Self.FK_TIPO_DOC">
+            <End Role="TIPOS_DOC" EntitySet="TIPOS_DOC" />
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_EMPLEADO" Association="Self.FK_USUARIOS_EMPLEADO">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_TIPO_USUARIO" Association="Self.FK_USUARIOS_TIPO_USUARIO">
+            <End Role="TIPOS_USUARIO" EntitySet="TIPOS_USUARIO" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Integrador_1.DAL.Clinica" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BARRIOS">
+          <Key>
+            <PropertyRef Name="id_barrio" />
+          </Key>
+          <Property Name="id_barrio" Type="Int32" Nullable="false" />
+          <Property Name="nom_barrio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_localidad" Type="Int32" />
+          <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_EMPLEADOS" FromRole="BARRIOS" ToRole="EMPLEADOS" />
+          <NavigationProperty Name="LOCALIDADES" Relationship="Self.FK_LOCALIDADES" FromRole="BARRIOS" ToRole="LOCALIDADES" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_PACIENTES_BARRIO" FromRole="BARRIOS" ToRole="PACIENTES" />
+        </EntityType>
+        <EntityType Name="DIAGNOSTICOS">
+          <Key>
+            <PropertyRef Name="tipo_dx" />
+          </Key>
+          <Property Name="tipo_dx" Type="Int32" Nullable="false" />
+          <Property Name="nom_diagnostico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_especialidad" Type="Int32" />
+          <Property Name="alta_complejidad" Type="Boolean" />
+          <NavigationProperty Name="ESPECIALIDADES" Relationship="Self.FK_DX_ESPECIALIDAD" FromRole="DIAGNOSTICOS" ToRole="ESPECIALIDADES" />
+          <NavigationProperty Name="PROCEDIMIENTOS" Relationship="Self.FK_PROCEDIMIENTOS_TIPOS_DX" FromRole="DIAGNOSTICOS" ToRole="PROCEDIMIENTOS" />
+        </EntityType>
+        <EntityType Name="EMPLEADOS">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellido_empleado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_doc" Type="Int32" />
+          <Property Name="nro_doc" Type="Int64" />
+          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nro_dom" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="Int64" />
+          <Property Name="id_barrio" Type="Int32" />
+          <NavigationProperty Name="BARRIOS" Relationship="Self.FK_EMPLEADOS" FromRole="EMPLEADOS" ToRole="BARRIOS" />
+          <NavigationProperty Name="TIPOS_DOC" Relationship="Self.FK_TIPO_DOC" FromRole="EMPLEADOS" ToRole="TIPOS_DOC" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_EMPLEADO" FromRole="EMPLEADOS" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="ESPECIALIDADES">
+          <Key>
+            <PropertyRef Name="id_especialidad" />
+          </Key>
+          <Property Name="id_especialidad" Type="Int32" Nullable="false" />
+          <Property Name="nombre_especialidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DIAGNOSTICOS" Relationship="Self.FK_DX_ESPECIALIDAD" FromRole="ESPECIALIDADES" ToRole="DIAGNOSTICOS" />
+          <NavigationProperty Name="MEDICOS" Relationship="Self.FK_MEDICOS_ESPECIALIDADES" FromRole="ESPECIALIDADES" ToRole="MEDICOS" />
+        </EntityType>
+        <EntityType Name="HISTORIAS_CLINICAS">
+          <Key>
+            <PropertyRef Name="id_historia_clinica" />
+          </Key>
+          <Property Name="id_historia_clinica" Type="Int32" Nullable="false" />
+          <Property Name="id_paciente" Type="Int32" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_HISTORIAS_CLINICAS_PACIENTES" FromRole="HISTORIAS_CLINICAS" ToRole="PACIENTES" />
+          <NavigationProperty Name="PROCEDIMIENTOS" Relationship="Self.HISTORIA_PROCEDIMIENTOS" FromRole="HISTORIAS_CLINICAS" ToRole="PROCEDIMIENTOS" />
+        </EntityType>
+        <EntityType Name="LOCALIDADES">
+          <Key>
+            <PropertyRef Name="id_localidad" />
+          </Key>
+          <Property Name="id_localidad" Type="Int32" Nullable="false" />
+          <Property Name="nom_localidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_provincia" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BARRIOS" Relationship="Self.FK_LOCALIDADES" FromRole="LOCALIDADES" ToRole="BARRIOS" />
+          <NavigationProperty Name="PROVINCIAS" Relationship="Self.FK_LOCALIDADES_PROVINCIAS" FromRole="LOCALIDADES" ToRole="PROVINCIAS" />
+        </EntityType>
+        <EntityType Name="MEDICOS">
+          <Key>
+            <PropertyRef Name="id_medico" />
+          </Key>
+          <Property Name="id_medico" Type="Int32" Nullable="false" />
+          <Property Name="id_especialidad" Type="Int32" />
+          <Property Name="matricula" Type="Int64" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="ESPECIALIDADES" Relationship="Self.FK_MEDICOS_ESPECIALIDADES" FromRole="MEDICOS" ToRole="ESPECIALIDADES" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_MEDICOS_USUARIOS" FromRole="MEDICOS" ToRole="USUARIOS" />
+          <NavigationProperty Name="PROCEDIMIENTOS" Relationship="Self.FK_PROCEDIMIENTOS_MEDICOS" FromRole="MEDICOS" ToRole="PROCEDIMIENTOS" />
+        </EntityType>
+        <EntityType Name="OBRAS_SOCIALES">
+          <Key>
+            <PropertyRef Name="id_obra_social" />
+          </Key>
+          <Property Name="id_obra_social" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_PACIENTES_OBRA_SOCIAL" FromRole="OBRAS_SOCIALES" ToRole="PACIENTES" />
+          <NavigationProperty Name="PLANES_OBRA_SOCIAL" Relationship="Self.FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL" FromRole="OBRAS_SOCIALES" ToRole="PLANES_OBRA_SOCIAL" />
+        </EntityType>
+        <EntityType Name="PACIENTES">
+          <Key>
+            <PropertyRef Name="id_paciente" />
+          </Key>
+          <Property Name="id_paciente" Type="Int32" Nullable="false" />
+          <Property Name="nom_paciente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_doc" Type="Int32" />
+          <Property Name="nro_doc" Type="Int64" />
+          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nro_dom" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="Int64" />
+          <Property Name="id_barrio" Type="Int32" />
+          <Property Name="id_obra_social" Type="Int32" />
+          <NavigationProperty Name="BARRIOS" Relationship="Self.FK_PACIENTES_BARRIO" FromRole="PACIENTES" ToRole="BARRIOS" />
+          <NavigationProperty Name="HISTORIAS_CLINICAS" Relationship="Self.FK_HISTORIAS_CLINICAS_PACIENTES" FromRole="PACIENTES" ToRole="HISTORIAS_CLINICAS" />
+          <NavigationProperty Name="OBRAS_SOCIALES" Relationship="Self.FK_PACIENTES_OBRA_SOCIAL" FromRole="PACIENTES" ToRole="OBRAS_SOCIALES" />
+          <NavigationProperty Name="TIPOS_DOC" Relationship="Self.FK_PACIENTES_TIPO_DOC" FromRole="PACIENTES" ToRole="TIPOS_DOC" />
+          <Property Name="id_genero" Type="Int32" />
+          <NavigationProperty Name="GENEROS" Relationship="Integrador_1.DAL.Clinica.FK_PACIENTES_GENERO" FromRole="PACIENTES" ToRole="GENEROS" />
+        </EntityType>
+        <EntityType Name="PLANES">
+          <Key>
+            <PropertyRef Name="id_plan" />
+          </Key>
+          <Property Name="id_plan" Type="Int32" Nullable="false" />
+          <Property Name="nom_plan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="req_coseg" Type="Boolean" />
+          <NavigationProperty Name="PLANES_OBRA_SOCIAL" Relationship="Self.FK_PLANES_OBRA_SOCIAL_PLANES" FromRole="PLANES" ToRole="PLANES_OBRA_SOCIAL" />
+        </EntityType>
+        <EntityType Name="PLANES_OBRA_SOCIAL">
+          <Key>
+            <PropertyRef Name="id_plan" />
+            <PropertyRef Name="id_obra_social" />
+          </Key>
+          <Property Name="id_plan" Type="Int32" Nullable="false" />
+          <Property Name="id_obra_social" Type="Int32" Nullable="false" />
+          <Property Name="nom_plan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OBRAS_SOCIALES" Relationship="Self.FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL" FromRole="PLANES_OBRA_SOCIAL" ToRole="OBRAS_SOCIALES" />
+          <NavigationProperty Name="PLANES" Relationship="Self.FK_PLANES_OBRA_SOCIAL_PLANES" FromRole="PLANES_OBRA_SOCIAL" ToRole="PLANES" />
+        </EntityType>
+        <EntityType Name="PROCEDIMIENTOS">
+          <Key>
+            <PropertyRef Name="id_procedimiento" />
+          </Key>
+          <Property Name="id_procedimiento" Type="Int32" Nullable="false" />
+          <Property Name="tipo_dx" Type="Int32" />
+          <Property Name="id_medico" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="hora" Type="Time" Precision="7" />
+          <NavigationProperty Name="DIAGNOSTICOS" Relationship="Self.FK_PROCEDIMIENTOS_TIPOS_DX" FromRole="PROCEDIMIENTOS" ToRole="DIAGNOSTICOS" />
+          <NavigationProperty Name="MEDICOS" Relationship="Self.FK_PROCEDIMIENTOS_MEDICOS" FromRole="PROCEDIMIENTOS" ToRole="MEDICOS" />
+          <NavigationProperty Name="HISTORIAS_CLINICAS" Relationship="Self.HISTORIA_PROCEDIMIENTOS" FromRole="PROCEDIMIENTOS" ToRole="HISTORIAS_CLINICAS" />
+        </EntityType>
+        <EntityType Name="PROVINCIAS">
+          <Key>
+            <PropertyRef Name="id_provincia" />
+          </Key>
+          <Property Name="id_provincia" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom_provincia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LOCALIDADES" Relationship="Self.FK_LOCALIDADES_PROVINCIAS" FromRole="PROVINCIAS" ToRole="LOCALIDADES" />
+        </EntityType>
+        <EntityType Name="ROLES_USUARIOS">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+          </Key>
+          <Property Name="cod_rol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="desc_rol" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="es_sysadmin" Type="Boolean" />
+          <Property Name="es_medico" Type="Boolean" />
+          <Property Name="asigna_turnos" Type="Boolean" />
+          <Property Name="es_administrativo" Type="Boolean" />
+          <NavigationProperty Name="TIPOS_USUARIO" Relationship="Self.ROLES_USUARIOS_TIPO_USUARIOS" FromRole="ROLES_USUARIOS" ToRole="TIPOS_USUARIO" />
+        </EntityType>
+        <EntityType Name="TIPOS_DOC">
+          <Key>
+            <PropertyRef Name="id_tipo_doc" />
+          </Key>
+          <Property Name="id_tipo_doc" Type="Int32" Nullable="false" />
+          <Property Name="desc_tipo_doc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_TIPO_DOC" FromRole="TIPOS_DOC" ToRole="EMPLEADOS" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_PACIENTES_TIPO_DOC" FromRole="TIPOS_DOC" ToRole="PACIENTES" />
+        </EntityType>
+        <EntityType Name="TIPOS_USUARIO">
+          <Key>
+            <PropertyRef Name="id_tipo_usuario" />
+          </Key>
+          <Property Name="id_tipo_usuario" Type="Int32" Nullable="false" />
+          <Property Name="desc_tipo_usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="es_admin" Type="Boolean" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIOS_TIPO_USUARIO" FromRole="TIPOS_USUARIO" ToRole="USUARIOS" />
+          <NavigationProperty Name="ROLES_USUARIOS" Relationship="Self.ROLES_USUARIOS_TIPO_USUARIOS" FromRole="TIPOS_USUARIO" ToRole="ROLES_USUARIOS" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_empleado" Type="Int32" />
+          <Property Name="id_tipo_usuario" Type="Int32" />
+          <Property Name="contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_USUARIOS_EMPLEADO" FromRole="USUARIOS" ToRole="EMPLEADOS" />
+          <NavigationProperty Name="MEDICOS" Relationship="Self.FK_MEDICOS_USUARIOS" FromRole="USUARIOS" ToRole="MEDICOS" />
+          <NavigationProperty Name="TIPOS_USUARIO" Relationship="Self.FK_USUARIOS_TIPO_USUARIO" FromRole="USUARIOS" ToRole="TIPOS_USUARIO" />
+        </EntityType>
+        <Association Name="FK_EMPLEADOS">
+          <End Role="BARRIOS" Type="Self.BARRIOS" Multiplicity="0..1" />
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BARRIOS">
+              <PropertyRef Name="id_barrio" />
+            </Principal>
+            <Dependent Role="EMPLEADOS">
+              <PropertyRef Name="id_barrio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCALIDADES">
+          <End Role="LOCALIDADES" Type="Self.LOCALIDADES" Multiplicity="0..1" />
+          <End Role="BARRIOS" Type="Self.BARRIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCALIDADES">
+              <PropertyRef Name="id_localidad" />
+            </Principal>
+            <Dependent Role="BARRIOS">
+              <PropertyRef Name="id_localidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_BARRIO">
+          <End Role="BARRIOS" Type="Self.BARRIOS" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BARRIOS">
+              <PropertyRef Name="id_barrio" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="id_barrio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DX_ESPECIALIDAD">
+          <End Role="ESPECIALIDADES" Type="Self.ESPECIALIDADES" Multiplicity="0..1" />
+          <End Role="DIAGNOSTICOS" Type="Self.DIAGNOSTICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESPECIALIDADES">
+              <PropertyRef Name="id_especialidad" />
+            </Principal>
+            <Dependent Role="DIAGNOSTICOS">
+              <PropertyRef Name="id_especialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROCEDIMIENTOS_TIPOS_DX">
+          <End Role="DIAGNOSTICOS" Type="Self.DIAGNOSTICOS" Multiplicity="0..1" />
+          <End Role="PROCEDIMIENTOS" Type="Self.PROCEDIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIAGNOSTICOS">
+              <PropertyRef Name="tipo_dx" />
+            </Principal>
+            <Dependent Role="PROCEDIMIENTOS">
+              <PropertyRef Name="tipo_dx" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_DOC">
+          <End Role="TIPOS_DOC" Type="Self.TIPOS_DOC" Multiplicity="0..1" />
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_DOC">
+              <PropertyRef Name="id_tipo_doc" />
+            </Principal>
+            <Dependent Role="EMPLEADOS">
+              <PropertyRef Name="tipo_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_EMPLEADO">
+          <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADOS">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_ESPECIALIDADES">
+          <End Role="ESPECIALIDADES" Type="Self.ESPECIALIDADES" Multiplicity="0..1" />
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESPECIALIDADES">
+              <PropertyRef Name="id_especialidad" />
+            </Principal>
+            <Dependent Role="MEDICOS">
+              <PropertyRef Name="id_especialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORIAS_CLINICAS_PACIENTES">
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="0..1" />
+          <End Role="HISTORIAS_CLINICAS" Type="Self.HISTORIAS_CLINICAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTES">
+              <PropertyRef Name="id_paciente" />
+            </Principal>
+            <Dependent Role="HISTORIAS_CLINICAS">
+              <PropertyRef Name="id_paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCALIDADES_PROVINCIAS">
+          <End Role="PROVINCIAS" Type="Self.PROVINCIAS" Multiplicity="0..1" />
+          <End Role="LOCALIDADES" Type="Self.LOCALIDADES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIAS">
+              <PropertyRef Name="id_provincia" />
+            </Principal>
+            <Dependent Role="LOCALIDADES">
+              <PropertyRef Name="id_provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="MEDICOS">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROCEDIMIENTOS_MEDICOS">
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="0..1" />
+          <End Role="PROCEDIMIENTOS" Type="Self.PROCEDIMIENTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="id_medico" />
+            </Principal>
+            <Dependent Role="PROCEDIMIENTOS">
+              <PropertyRef Name="id_medico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_OBRA_SOCIAL">
+          <End Role="OBRAS_SOCIALES" Type="Self.OBRAS_SOCIALES" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OBRAS_SOCIALES">
+              <PropertyRef Name="id_obra_social" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="id_obra_social" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL">
+          <End Role="OBRAS_SOCIALES" Type="Self.OBRAS_SOCIALES" Multiplicity="1" />
+          <End Role="PLANES_OBRA_SOCIAL" Type="Self.PLANES_OBRA_SOCIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OBRAS_SOCIALES">
+              <PropertyRef Name="id_obra_social" />
+            </Principal>
+            <Dependent Role="PLANES_OBRA_SOCIAL">
+              <PropertyRef Name="id_obra_social" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_TIPO_DOC">
+          <End Role="TIPOS_DOC" Type="Self.TIPOS_DOC" Multiplicity="0..1" />
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_DOC">
+              <PropertyRef Name="id_tipo_doc" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="tipo_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLANES_OBRA_SOCIAL_PLANES">
+          <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+          <End Role="PLANES_OBRA_SOCIAL" Type="Self.PLANES_OBRA_SOCIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLANES">
+              <PropertyRef Name="id_plan" />
+            </Principal>
+            <Dependent Role="PLANES_OBRA_SOCIAL">
+              <PropertyRef Name="id_plan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIOS_TIPO_USUARIO">
+          <End Role="TIPOS_USUARIO" Type="Self.TIPOS_USUARIO" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_USUARIO">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="id_tipo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HISTORIA_PROCEDIMIENTOS">
+          <End Role="HISTORIAS_CLINICAS" Type="Self.HISTORIAS_CLINICAS" Multiplicity="*" />
+          <End Role="PROCEDIMIENTOS" Type="Self.PROCEDIMIENTOS" Multiplicity="*" />
+        </Association>
+        <Association Name="ROLES_USUARIOS_TIPO_USUARIOS">
+          <End Role="ROLES_USUARIOS" Type="Self.ROLES_USUARIOS" Multiplicity="*" />
+          <End Role="TIPOS_USUARIO" Type="Self.TIPOS_USUARIO" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CLINICA" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BARRIOS" EntityType="Self.BARRIOS" />
+          <EntitySet Name="DIAGNOSTICOS" EntityType="Self.DIAGNOSTICOS" />
+          <EntitySet Name="EMPLEADOS" EntityType="Self.EMPLEADOS" />
+          <EntitySet Name="ESPECIALIDADES" EntityType="Self.ESPECIALIDADES" />
+          <EntitySet Name="HISTORIAS_CLINICAS" EntityType="Self.HISTORIAS_CLINICAS" />
+          <EntitySet Name="LOCALIDADES" EntityType="Self.LOCALIDADES" />
+          <EntitySet Name="MEDICOS" EntityType="Self.MEDICOS" />
+          <EntitySet Name="OBRAS_SOCIALES" EntityType="Self.OBRAS_SOCIALES" />
+          <EntitySet Name="PACIENTES" EntityType="Self.PACIENTES" />
+          <EntitySet Name="PLANES" EntityType="Self.PLANES" />
+          <EntitySet Name="PLANES_OBRA_SOCIAL" EntityType="Self.PLANES_OBRA_SOCIAL" />
+          <EntitySet Name="PROCEDIMIENTOS" EntityType="Self.PROCEDIMIENTOS" />
+          <EntitySet Name="PROVINCIAS" EntityType="Self.PROVINCIAS" />
+          <EntitySet Name="ROLES_USUARIOS" EntityType="Self.ROLES_USUARIOS" />
+          <EntitySet Name="TIPOS_DOC" EntityType="Self.TIPOS_DOC" />
+          <EntitySet Name="TIPOS_USUARIO" EntityType="Self.TIPOS_USUARIO" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_EMPLEADOS" Association="Self.FK_EMPLEADOS">
+            <End Role="BARRIOS" EntitySet="BARRIOS" />
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIDADES" Association="Self.FK_LOCALIDADES">
+            <End Role="LOCALIDADES" EntitySet="LOCALIDADES" />
+            <End Role="BARRIOS" EntitySet="BARRIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_BARRIO" Association="Self.FK_PACIENTES_BARRIO">
+            <End Role="BARRIOS" EntitySet="BARRIOS" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DX_ESPECIALIDAD" Association="Self.FK_DX_ESPECIALIDAD">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="DIAGNOSTICOS" EntitySet="DIAGNOSTICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROCEDIMIENTOS_TIPOS_DX" Association="Self.FK_PROCEDIMIENTOS_TIPOS_DX">
+            <End Role="DIAGNOSTICOS" EntitySet="DIAGNOSTICOS" />
+            <End Role="PROCEDIMIENTOS" EntitySet="PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_DOC" Association="Self.FK_TIPO_DOC">
+            <End Role="TIPOS_DOC" EntitySet="TIPOS_DOC" />
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_EMPLEADO" Association="Self.FK_USUARIOS_EMPLEADO">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_ESPECIALIDADES" Association="Self.FK_MEDICOS_ESPECIALIDADES">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORIAS_CLINICAS_PACIENTES" Association="Self.FK_HISTORIAS_CLINICAS_PACIENTES">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="HISTORIAS_CLINICAS" EntitySet="HISTORIAS_CLINICAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIDADES_PROVINCIAS" Association="Self.FK_LOCALIDADES_PROVINCIAS">
+            <End Role="PROVINCIAS" EntitySet="PROVINCIAS" />
+            <End Role="LOCALIDADES" EntitySet="LOCALIDADES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_USUARIOS" Association="Self.FK_MEDICOS_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROCEDIMIENTOS_MEDICOS" Association="Self.FK_PROCEDIMIENTOS_MEDICOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="PROCEDIMIENTOS" EntitySet="PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_OBRA_SOCIAL" Association="Self.FK_PACIENTES_OBRA_SOCIAL">
+            <End Role="OBRAS_SOCIALES" EntitySet="OBRAS_SOCIALES" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL" Association="Self.FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL">
+            <End Role="OBRAS_SOCIALES" EntitySet="OBRAS_SOCIALES" />
+            <End Role="PLANES_OBRA_SOCIAL" EntitySet="PLANES_OBRA_SOCIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_TIPO_DOC" Association="Self.FK_PACIENTES_TIPO_DOC">
+            <End Role="TIPOS_DOC" EntitySet="TIPOS_DOC" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLANES_OBRA_SOCIAL_PLANES" Association="Self.FK_PLANES_OBRA_SOCIAL_PLANES">
+            <End Role="PLANES" EntitySet="PLANES" />
+            <End Role="PLANES_OBRA_SOCIAL" EntitySet="PLANES_OBRA_SOCIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIOS_TIPO_USUARIO" Association="Self.FK_USUARIOS_TIPO_USUARIO">
+            <End Role="TIPOS_USUARIO" EntitySet="TIPOS_USUARIO" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="HISTORIA_PROCEDIMIENTOS" Association="Self.HISTORIA_PROCEDIMIENTOS">
+            <End Role="HISTORIAS_CLINICAS" EntitySet="HISTORIAS_CLINICAS" />
+            <End Role="PROCEDIMIENTOS" EntitySet="PROCEDIMIENTOS" />
+          </AssociationSet>
+          <AssociationSet Name="ROLES_USUARIOS_TIPO_USUARIOS" Association="Self.ROLES_USUARIOS_TIPO_USUARIOS">
+            <End Role="ROLES_USUARIOS" EntitySet="ROLES_USUARIOS" />
+            <End Role="TIPOS_USUARIO" EntitySet="TIPOS_USUARIO" />
+          </AssociationSet>
+          <EntitySet Name="GENEROS" EntityType="Integrador_1.DAL.Clinica.GENEROS" />
+          <AssociationSet Name="FK_PACIENTES_GENERO" Association="Integrador_1.DAL.Clinica.FK_PACIENTES_GENERO">
+            <End Role="GENEROS" EntitySet="GENEROS" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="GENEROS">
+          <Key>
+            <PropertyRef Name="id_genero" />
+          </Key>
+          <Property Name="id_genero" Type="Int32" Nullable="false" />
+          <Property Name="desc_genero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PACIENTES" Relationship="Integrador_1.DAL.Clinica.FK_PACIENTES_GENERO" FromRole="GENEROS" ToRole="PACIENTES" />
+        </EntityType>
+        <Association Name="FK_PACIENTES_GENERO">
+          <End Type="Integrador_1.DAL.Clinica.GENEROS" Role="GENEROS" Multiplicity="0..1" />
+          <End Type="Integrador_1.DAL.Clinica.PACIENTES" Role="PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENEROS">
+              <PropertyRef Name="id_genero" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="id_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Integrador_1DALClinicaStoreContainer" CdmEntityContainer="CLINICA">
+          <EntitySetMapping Name="BARRIOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.BARRIOS">
+              <MappingFragment StoreEntitySet="BARRIOS">
+                <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+                <ScalarProperty Name="nom_barrio" ColumnName="nom_barrio" />
+                <ScalarProperty Name="id_localidad" ColumnName="id_localidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIAGNOSTICOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.DIAGNOSTICOS">
+              <MappingFragment StoreEntitySet="DIAGNOSTICOS">
+                <ScalarProperty Name="tipo_dx" ColumnName="tipo_dx" />
+                <ScalarProperty Name="nom_diagnostico" ColumnName="nom_diagnostico" />
+                <ScalarProperty Name="id_especialidad" ColumnName="id_especialidad" />
+                <ScalarProperty Name="alta_complejidad" ColumnName="alta_complejidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.EMPLEADOS">
+              <MappingFragment StoreEntitySet="EMPLEADOS">
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="apellido_empleado" ColumnName="apellido_empleado" />
+                <ScalarProperty Name="tipo_doc" ColumnName="tipo_doc" />
+                <ScalarProperty Name="nro_doc" ColumnName="nro_doc" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="nro_dom" ColumnName="nro_dom" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESPECIALIDADES">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.ESPECIALIDADES">
+              <MappingFragment StoreEntitySet="ESPECIALIDADES">
+                <ScalarProperty Name="id_especialidad" ColumnName="id_especialidad" />
+                <ScalarProperty Name="nombre_especialidad" ColumnName="nombre_especialidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORIAS_CLINICAS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.HISTORIAS_CLINICAS">
+              <MappingFragment StoreEntitySet="HISTORIAS_CLINICAS">
+                <ScalarProperty Name="id_historia_clinica" ColumnName="id_historia_clinica" />
+                <ScalarProperty Name="id_paciente" ColumnName="id_paciente" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCALIDADES">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.LOCALIDADES">
+              <MappingFragment StoreEntitySet="LOCALIDADES">
+                <ScalarProperty Name="id_localidad" ColumnName="id_localidad" />
+                <ScalarProperty Name="nom_localidad" ColumnName="nom_localidad" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.MEDICOS">
+              <MappingFragment StoreEntitySet="MEDICOS">
+                <ScalarProperty Name="id_medico" ColumnName="id_medico" />
+                <ScalarProperty Name="id_especialidad" ColumnName="id_especialidad" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OBRAS_SOCIALES">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.OBRAS_SOCIALES">
+              <MappingFragment StoreEntitySet="OBRAS_SOCIALES">
+                <ScalarProperty Name="id_obra_social" ColumnName="id_obra_social" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTES">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.PACIENTES">
+              <MappingFragment StoreEntitySet="PACIENTES">
+                <ScalarProperty Name="id_genero" ColumnName="id_genero" />
+                <ScalarProperty Name="id_paciente" ColumnName="id_paciente" />
+                <ScalarProperty Name="nom_paciente" ColumnName="nom_paciente" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="tipo_doc" ColumnName="tipo_doc" />
+                <ScalarProperty Name="nro_doc" ColumnName="nro_doc" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="nro_dom" ColumnName="nro_dom" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="id_barrio" ColumnName="id_barrio" />
+                <ScalarProperty Name="id_obra_social" ColumnName="id_obra_social" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLANES">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.PLANES">
+              <MappingFragment StoreEntitySet="PLANES">
+                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
+                <ScalarProperty Name="nom_plan" ColumnName="nom_plan" />
+                <ScalarProperty Name="req_coseg" ColumnName="req_coseg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLANES_OBRA_SOCIAL">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.PLANES_OBRA_SOCIAL">
+              <MappingFragment StoreEntitySet="PLANES_OBRA_SOCIAL">
+                <ScalarProperty Name="id_plan" ColumnName="id_plan" />
+                <ScalarProperty Name="id_obra_social" ColumnName="id_obra_social" />
+                <ScalarProperty Name="nom_plan" ColumnName="nom_plan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROCEDIMIENTOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.PROCEDIMIENTOS">
+              <MappingFragment StoreEntitySet="PROCEDIMIENTOS">
+                <ScalarProperty Name="id_procedimiento" ColumnName="id_procedimiento" />
+                <ScalarProperty Name="tipo_dx" ColumnName="tipo_dx" />
+                <ScalarProperty Name="id_medico" ColumnName="id_medico" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCIAS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.PROVINCIAS">
+              <MappingFragment StoreEntitySet="PROVINCIAS">
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="nom_provincia" ColumnName="nom_provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES_USUARIOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.ROLES_USUARIOS">
+              <MappingFragment StoreEntitySet="ROLES_USUARIOS">
+                <ScalarProperty Name="cod_rol" ColumnName="cod_rol" />
+                <ScalarProperty Name="desc_rol" ColumnName="desc_rol" />
+                <ScalarProperty Name="es_sysadmin" ColumnName="es_sysadmin" />
+                <ScalarProperty Name="es_medico" ColumnName="es_medico" />
+                <ScalarProperty Name="asigna_turnos" ColumnName="asigna_turnos" />
+                <ScalarProperty Name="es_administrativo" ColumnName="es_administrativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOS_DOC">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.TIPOS_DOC">
+              <MappingFragment StoreEntitySet="TIPOS_DOC">
+                <ScalarProperty Name="id_tipo_doc" ColumnName="id_tipo_doc" />
+                <ScalarProperty Name="desc_tipo_doc" ColumnName="desc_tipo_doc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOS_USUARIO">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.TIPOS_USUARIO">
+              <MappingFragment StoreEntitySet="TIPOS_USUARIO">
+                <ScalarProperty Name="id_tipo_usuario" ColumnName="id_tipo_usuario" />
+                <ScalarProperty Name="desc_tipo_usuario" ColumnName="desc_tipo_usuario" />
+                <ScalarProperty Name="es_admin" ColumnName="es_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_tipo_usuario" ColumnName="id_tipo_usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HISTORIA_PROCEDIMIENTOS" TypeName="Integrador_1.DAL.Clinica.HISTORIA_PROCEDIMIENTOS" StoreEntitySet="HISTORIA_PROCEDIMIENTOS">
+            <EndProperty Name="HISTORIAS_CLINICAS">
+              <ScalarProperty Name="id_historia_clinica" ColumnName="id_historia_clinica" />
+            </EndProperty>
+            <EndProperty Name="PROCEDIMIENTOS">
+              <ScalarProperty Name="id_procedimiento" ColumnName="id_procedimiento" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ROLES_USUARIOS_TIPO_USUARIOS" TypeName="Integrador_1.DAL.Clinica.ROLES_USUARIOS_TIPO_USUARIOS" StoreEntitySet="ROLES_USUARIOS_TIPO_USUARIOS">
+            <EndProperty Name="ROLES_USUARIOS">
+              <ScalarProperty Name="cod_rol" ColumnName="cod_rol" />
+            </EndProperty>
+            <EndProperty Name="TIPOS_USUARIO">
+              <ScalarProperty Name="id_tipo_usuario" ColumnName="id_tipo_usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="GENEROS">
+            <EntityTypeMapping TypeName="Integrador_1.DAL.Clinica.GENEROS">
+              <MappingFragment StoreEntitySet="GENEROS">
+                <ScalarProperty Name="desc_genero" ColumnName="desc_genero" />
+                <ScalarProperty Name="id_genero" ColumnName="id_genero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

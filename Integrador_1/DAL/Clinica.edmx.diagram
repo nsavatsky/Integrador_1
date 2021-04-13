@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="786ceb473d1344d7809b286444bec365" Name="Diagram1">
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.BARRIOS" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.DIAGNOSTICOS" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.EMPLEADOS" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.ESPECIALIDADES" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.HISTORIAS_CLINICAS" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.LOCALIDADES" Width="1.5" PointX="1.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.MEDICOS" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.OBRAS_SOCIALES" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.PACIENTES" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.PLANES" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.PLANES_OBRA_SOCIAL" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.PROCEDIMIENTOS" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.PROVINCIAS" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.ROLES_USUARIOS" Width="1.5" PointX="1.5" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.TIPOS_DOC" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.TIPOS_USUARIO" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.USUARIOS" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_EMPLEADOS" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_LOCALIDADES" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PACIENTES_BARRIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_DX_ESPECIALIDAD" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PROCEDIMIENTOS_TIPOS_DX" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_TIPO_DOC" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_USUARIOS_EMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_MEDICOS_ESPECIALIDADES" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_HISTORIAS_CLINICAS_PACIENTES" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_LOCALIDADES_PROVINCIAS" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_MEDICOS_USUARIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PROCEDIMIENTOS_MEDICOS" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PACIENTES_OBRA_SOCIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PLANES_OBRA_SOCIAL_OBRA_SOCIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PACIENTES_TIPO_DOC" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PLANES_OBRA_SOCIAL_PLANES" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_USUARIOS_TIPO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.HISTORIA_PROCEDIMIENTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.ROLES_USUARIOS_TIPO_USUARIOS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Integrador_1.DAL.Clinica.GENEROS" Width="1.5" PointX="6.375" PointY="0.875" />
+        <AssociationConnector Association="Integrador_1.DAL.Clinica.FK_PACIENTES_GENERO" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
